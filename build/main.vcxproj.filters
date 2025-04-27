@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\jayxw\Desktop\C And CPP Projects\C Memory Allocator\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jayxw\Desktop\C And CPP Projects\C Memory Allocator\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{088E14D5-80B0-34AD-B056-36417054FE87}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
