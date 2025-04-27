@@ -1,15 +1,6 @@
-#include <stdio.h>
-#include <stddef.h>
-#include <stdbool.h>
-#include <assert.h>
-
-#define MEMORY_SIZE 1024
-
-// Simple memory pool
-static char memory[MEMORY_SIZE];
-static char *memory_start = memory;
-static char *memory_end = memory + MEMORY_SIZE;
-static char *current;
+#include "Main.h"
+#include "Deallocation.h"
+#include "Print.h"
 
 // Initialize the memory pool
 bool InitAllocator()
@@ -21,60 +12,78 @@ bool InitAllocator()
     }
 
     current = memory;
+    // printf("%sMemory pool initialized at address %p%s\n", GREEN, (void*)0x7f6f58b2a100, RESET);  // Green text
+    CYAN_PRINT("Jay's Memory Allocator Initialised");
     return true;
 }
 
 // Custom/Simple malloc-like memory allocator
 void *CustomMemoryAllocate(size_t size)
 {
-    if ((current + size) > memory_end) {
+    // Ensure the block size is a multiple of sizeof(BlockHeader)
+    size = (size + sizeof(BlockHeader) - 1) & ~(sizeof(BlockHeader) - 1);
+
+    BlockHeader *prev = NULL;
+    BlockHeader *block = free_list;
+    
+    while (block != NULL) {
+        if (block->size >= size) {
+            // Found a block large enough, remove it from the free list
+            if (prev != NULL) {
+                prev->next = block->next;
+            } else {
+                free_list = block->next;
+            }
+            return (void *)(block + 1); // Return the address after the block header
+        }
+
+        prev = block;
+        block = block->next;
+    }
+
+    if ((current + sizeof(BlockHeader) + size) > memory_end) {
         return NULL; // Not enough memory
     }
 
-    void *pointer = current;
-    current += size; // Move the current pointer forward
-    return pointer;
-}
 
+    BlockHeader *new_block = (BlockHeader*)current;
+    new_block->size = size;
+    current += sizeof(BlockHeader) + size;
+    return (void *)(new_block + 1);
+}
 
 void AllocateMemoryForBlock1()
 {
     void *block1 = CustomMemoryAllocate(100);
     if (block1 != NULL) {
         // Do something with block1
-        printf("Success: Block 1 allocated at address %p\n", block1);
+        SUCCESS_PRINT("100 bytes allocated (block1)");
     } else {
-        printf("Failed: Not enough memory for block 1\n");
+        ERROR_PRINT("Failed to allocate memory (block1)");
     }
 }
 
+// Should fail because 100 + 950 > 1024
 void AllocateMemoryForBlock2()
 {
-    void *block2 = CustomMemoryAllocate(950); // Should fail because 100 + 950 > 1024
+    void *block2 = CustomMemoryAllocate(950); 
     if (block2 != NULL) {
-        // Do something with block2
-        printf("Success: Block 2 allocated at address %p\n", block2);
+        SUCCESS_PRINT("950 bytes allocated (block2)");
     } else {
-        printf("Failed: Not enough memory for block 2\n");
+        ERROR_PRINT("Failed to allocate memory (block2)");
     }
 }
-
 
 void RealMain()
 {
-    printf("C Memory Allocator\n");
     assert(InitAllocator());
     AllocateMemoryForBlock1();
     AllocateMemoryForBlock2();
+    // TestDeallocation();
 }
-
-
-
-
 
 int main() 
 {
     RealMain();
     return 0;
 }
-
