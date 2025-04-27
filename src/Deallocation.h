@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Main.h"
+#include "Print.h"
 
 // Deallocation function to return memory to the free list
 void CustomMemoryFree(void *pointer)
@@ -22,16 +23,16 @@ void TestDeallocation()
    // Allocate and deallocate a block
     void *block1 = CustomMemoryAllocate(100);
     if (block1 != NULL) {
-        printf("Allocated Block 1 at %p\n", block1);
+        SUCCESS_PRINT("100 bytes allocated (TestDeallocation block1)");
         CustomMemoryFree(block1);  // Deallocate Block 1
-        printf("Freed Block 1\n");
+        SUCCESS_PRINT("100 bytes freed (TestDeallocation block1)");
     }
 
     // Allocate again to see if we reuse freed memory
     void *block2 = CustomMemoryAllocate(100);
     if (block2 != NULL) {
-        printf("Allocated Block 2 at %p (should be reused)\n", block2);
+        SUCCESS_PRINT("100 bytes freed - should be reused? (TestDeallocation block2)");
     } else {
-        printf("Failed to allocate Block 2\n");
+        ERROR_PRINT("Failed to allocate 100 bytes (TestDeallocation block2)");
     }
 }

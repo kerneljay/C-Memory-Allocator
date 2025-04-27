@@ -2,6 +2,8 @@
     "files.associations": {
         "*.cpp": "cpp",
         "*.c": "csharp",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "main.h": "c",
+        "print.h": "c"
     }
 }

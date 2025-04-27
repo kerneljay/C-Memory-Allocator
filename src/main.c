@@ -7,12 +7,11 @@ bool InitAllocator()
 {
     if (memory == 0)
     {
-        printf("Failed to allocate memory");
+        ERROR_PRINT("Failed to allocate memory (init)");
         return false;
     }
 
     current = memory;
-    // printf("%sMemory pool initialized at address %p%s\n", GREEN, (void*)0x7f6f58b2a100, RESET);  // Green text
     CYAN_PRINT("Jay's Memory Allocator Initialised");
     return true;
 }
@@ -59,7 +58,7 @@ void AllocateMemoryForBlock1()
         // Do something with block1
         SUCCESS_PRINT("100 bytes allocated (block1)");
     } else {
-        ERROR_PRINT("Failed to allocate memory (block1)");
+        ERROR_PRINT("Failed to allocate 100 bytes (block1)");
     }
 }
 
@@ -70,7 +69,7 @@ void AllocateMemoryForBlock2()
     if (block2 != NULL) {
         SUCCESS_PRINT("950 bytes allocated (block2)");
     } else {
-        ERROR_PRINT("Failed to allocate memory (block2)");
+        ERROR_PRINT("Failed to allocate 950 bytes (block2)");
     }
 }
 
