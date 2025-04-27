@@ -1,10 +1,13 @@
 #pragma once
 
+#include "Print.h"
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <stddef.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "Print.h"
+#include <time.h>
 
 #define MEMORY_SIZE 1024
 

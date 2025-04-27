@@ -243,10 +243,50 @@ void TestFragmentation()
 }
 
 
+#define MAX_ALLOCATION_SIZE 512  // Max allocation size (can be adjusted)
+#define NUM_OPERATIONS 1000      // Number of allocations and deallocations to perform
+void StressTestMemoryAllocator() 
+{
+    void *allocations[NUM_OPERATIONS];  // Store pointers to track memory allocated
+    int num_allocations = 0;
+
+    // Seed the random number generator
+    srand(time(NULL));
+
+    for (int i = 0; i < NUM_OPERATIONS; i++) {
+        // Randomly choose whether to allocate or deallocate
+        if (rand() % 2 == 0 && num_allocations < NUM_OPERATIONS) {
+            // Perform allocation
+            size_t size = rand() % MAX_ALLOCATION_SIZE + 1;  // Random size between 1 and MAX_ALLOCATION_SIZE
+            void *block = CustomMemoryAllocate(size);
+            
+            if (block != NULL) {
+                printf("Allocated %zu bytes at %p\n", size, block);
+                allocations[num_allocations++] = block;
+            } else {
+                printf("Allocation failed for %zu bytes\n", size);
+            }
+        } else if (num_allocations > 0) {
+            // Perform deallocation
+            int idx = rand() % num_allocations;
+            CustomMemoryFree(allocations[idx]);
+            printf("Freed memory at %p\n", allocations[idx]);
+            
+            // Move the last allocation to the freed spot (remove the element from the list)
+            allocations[idx] = allocations[num_allocations - 1];
+            num_allocations--;
+        }
+    }
+
+    printf("Stress test complete.\n");
+}
+
+
+
 void TestDeallocation()
 {
     // ALLOCATION TESTS
-    TestBasicAllocateAndFree();
+    // TestBasicAllocateAndFree();
     // TestMultipleAllocations();
     // TestReallocateFreedMemory();
 
@@ -260,4 +300,7 @@ void TestDeallocation()
 
     // FRAGMENTATION TESTS
     // TestFragmentation();
+
+    // STRESS TESTS
+    StressTestMemoryAllocator();
 }
