@@ -1,6 +1,6 @@
 ^C:\USERS\JAYXW\DESKTOP\C AND CPP PROJECTS\C MEMORY ALLOCATOR\BUILD\CMAKEFILES\CF20AF94EDCCE1CB8B0EC173DD797EEE\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/jayxw/Desktop/C And CPP Projects/C Memory Allocator" "-BC:/Users/jayxw/Desktop/C And CPP Projects/C Memory Allocator/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/jayxw/Desktop/C And CPP Projects/C Memory Allocator/build/c-memory-allocator.sln"
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/jayxw/Desktop/C And CPP Projects/C Memory Allocator" "-BC:/Users/jayxw/Desktop/C And CPP Projects/C Memory Allocator/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/jayxw/Desktop/C And CPP Projects/C Memory Allocator/build/c_memory_allocator.sln"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
