@@ -4,6 +4,17 @@
         "*.c": "csharp",
         "stdio.h": "c",
         "main.h": "c",
-        "print.h": "c"
+        "print.h": "c",
+        "defragmentation.h": "c",
+        "colours.h": "c",
+        "charconv": "c",
+        "xmemory": "c",
+        "xlocinfo": "c",
+        "xstring": "c",
+        "deallocation.h": "c",
+        "allocation.h": "c",
+        "assert.h": "c",
+        "stdbool.h": "c",
+        "stddef.h": "c"
     }
 }

@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "Colours.h"
+#include "Print.h"
 
 #define MEMORY_SIZE 1024
 
@@ -25,8 +25,6 @@ typedef struct BlockHeader
 static BlockHeader *free_list = NULL;
 
 bool InitAllocator();
-void *CustomMemoryAllocate(size_t size);
-void CustomMemoryFree(void *pointer);
 void AllocateMemoryForBlock1();
 void AllocateMemoryForBlock2();
 void RealMain();
