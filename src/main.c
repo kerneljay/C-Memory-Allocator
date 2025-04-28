@@ -1,6 +1,8 @@
 #include "Main.h"
 
 #include "Deallocation.h"
+#include "Allocation.h"
+#include "Tests.h"
 
 // Initialize the memory pool
 bool InitAllocator()
@@ -21,14 +23,14 @@ bool InitAllocator()
 void RealMain()
 {
     assert(InitAllocator());
-    // AllocateMemoryForBlock1();
-    // AllocateMemoryForBlock2();
+    // TEST_AllocateMemory_1();
+    // TEST_AllocateMemory_2();
     TestDeallocation();
+    CYAN_PRINT("-----------------------------------");
 }
 
 int main() 
 {
     RealMain();
-    CYAN_PRINT("-----------------------------------");
     return 0;
 }

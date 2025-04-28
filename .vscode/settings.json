@@ -15,6 +15,7 @@
         "allocation.h": "c",
         "assert.h": "c",
         "stdbool.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "utils.h": "c"
     }
 }

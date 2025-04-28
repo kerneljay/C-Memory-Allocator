@@ -28,6 +28,5 @@ typedef struct BlockHeader
 static BlockHeader *free_list = NULL;
 
 bool InitAllocator();
-void AllocateMemoryForBlock1();
-void AllocateMemoryForBlock2();
+void TEST_AllocateMemory_2();
 void RealMain();
