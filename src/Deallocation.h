@@ -3,14 +3,6 @@
 #include "Main.h"
 #include "Defragmentation.h"
 
-// Function to get available memory in bytes
-size_t GetAvailableMemory()
-{
-    printf("Available memory: %zu bytes\n", memory_end - current);
-    return memory_end - current;  // Available memory is the difference between the end of memory and current pointer
-}
-
-
 // Deallocation function to return memory to the free list
 bool FreeMemory(void *pointer)
 {

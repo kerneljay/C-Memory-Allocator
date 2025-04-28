@@ -27,6 +27,12 @@ typedef struct BlockHeader
 // Free list to keep track of available memory blocks
 static BlockHeader *free_list = NULL;
 
+// Function to get available memory in bytes
+size_t GetAvailableMemory()
+{
+    printf("Available memory: %zu bytes\n", memory_end - current);
+    return memory_end - current;  // Available memory is the difference between the end of memory and current pointer
+}
+
 bool InitAllocator();
-void TEST_AllocateMemory_2();
 void RealMain();
